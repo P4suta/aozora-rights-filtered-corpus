@@ -1,0 +1,29 @@
+name: update-corpus
+
+on:
+  schedule:
+    - cron: "23 17 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-corpus
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: update
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: cargo xtask doctor
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - run: cargo xtask refresh --jobs 20
+      - run: cargo xtask propose-update
+        env:
+          GH_TOKEN: ${{ github.token }}
