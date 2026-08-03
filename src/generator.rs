@@ -1101,12 +1101,29 @@ pub fn make_edition_id(work_id: &str, archive_url: &str) -> String {
 
 #[must_use]
 pub fn sha256(bytes: impl AsRef<[u8]>) -> String {
-    format!("{:x}", Sha256::digest(bytes.as_ref()))
+    const HEX: &[u8; 16] = b"0123456789abcdef";
+    let digest = Sha256::digest(bytes.as_ref());
+    let mut output = String::with_capacity(digest.len() * 2);
+    for byte in digest {
+        output.push(char::from(HEX[usize::from(byte >> 4)]));
+        output.push(char::from(HEX[usize::from(byte & 0x0f)]));
+    }
+    output
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{make_edition_id, safe_relative_path, validate_official_url};
+    use super::{make_edition_id, safe_relative_path, sha256, validate_official_url};
+
+    #[test]
+    fn sha256_is_lowercase_and_stable() {
+        let digest = sha256("abc");
+        assert_eq!(
+            digest,
+            "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        );
+        assert_eq!(digest.len(), 64);
+    }
 
     #[test]
     fn edition_identity_depends_on_work_and_archive_url() {
