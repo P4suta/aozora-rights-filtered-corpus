@@ -21,6 +21,7 @@ enum Task {
     Check,
     Format,
     FormatCheck,
+    Spellcheck,
     Scan {
         #[arg(long, default_value = "corpus.toml")]
         config: PathBuf,
@@ -67,6 +68,7 @@ fn main() -> Result<()> {
         Task::Check => check(),
         Task::Format => run("cargo", ["fmt", "--all"]),
         Task::FormatCheck => run("cargo", ["fmt", "--all", "--", "--check"]),
+        Task::Spellcheck => spellcheck(),
         Task::Scan {
             config,
             upstream_root,
@@ -135,6 +137,7 @@ fn input(upstream_root: Option<PathBuf>) -> Input {
 
 fn check() -> Result<()> {
     run("cargo", ["fmt", "--all", "--", "--check"])?;
+    spellcheck()?;
     run("cargo", ["check", "--locked", "--all-targets"])?;
     run(
         "cargo",
@@ -153,6 +156,10 @@ fn check() -> Result<()> {
         generator::verify(Path::new("corpus.toml"))?;
     }
     Ok(())
+}
+
+fn spellcheck() -> Result<()> {
+    run("typos", std::iter::empty::<&str>())
 }
 
 fn doctor() -> Result<()> {
