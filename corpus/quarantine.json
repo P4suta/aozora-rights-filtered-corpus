@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "referenceDate": "2026-08-02",
+  "referenceDate": "2026-08-03",
   "cutoffYear": 1930,
-  "upstreamCommit": "351ff56cbdc4efa4523e2c4e0564aac172c8ac95",
-  "metadataSha256": "8db07ebc29f7c4541e9864f2ec80dd785fe4f0b4aebcca6032aae55656267777",
+  "upstreamCommit": "07c549678422dc401fe4f24232eef38185bee67f",
+  "metadataSha256": "7bec52673a723c498cc902dabacf7e578330459d55f38f77c35229aefeb6c2ee",
   "summary": {
     "csvRows": 19497,
     "editionGroups": 17835,
