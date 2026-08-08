@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "referenceDate": "2026-08-02",
+  "referenceDate": "2026-08-08",
   "cutoffYear": 1930,
-  "upstreamCommit": "351ff56cbdc4efa4523e2c4e0564aac172c8ac95",
-  "metadataSha256": "8db07ebc29f7c4541e9864f2ec80dd785fe4f0b4aebcca6032aae55656267777",
+  "upstreamCommit": "e0cbe82eaae00d9c50330d9903ad4c2ec36f2a5b",
+  "metadataSha256": "f8dc8336c53481232aac70d5d265c72ac66839510bc9d5367b8eb5367c848ed1",
   "summary": {
-    "csvRows": 19497,
-    "editionGroups": 17835,
+    "csvRows": 19499,
+    "editionGroups": 17837,
     "candidateEditions": 4417,
     "acceptedEditions": 4417,
-    "quarantinedEditions": 13418
+    "quarantinedEditions": 13420
   },
   "entries": [
     {
@@ -117087,6 +117087,15 @@
       "detail": "first publication did not satisfy the conservative year parser"
     },
     {
+      "editionId": "060117-7394c6bed93c8555",
+      "workId": "060117",
+      "archiveUrl": "https://www.aozora.gr.jp/cards/001869/files/60117_ruby_78808.zip",
+      "reasons": [
+        "first_publication_missing"
+      ],
+      "detail": "first publication did not satisfy the conservative year parser"
+    },
+    {
       "editionId": "060118-ef5560d96577ac24",
       "workId": "060118",
       "archiveUrl": "https://www.aozora.gr.jp/cards/001869/files/60118_ruby_78401.zip",
@@ -120366,6 +120375,15 @@
       "editionId": "061482-cd8055a3a472de39",
       "workId": "061482",
       "archiveUrl": "https://www.aozora.gr.jp/cards/001569/files/61482_txt_78555.zip",
+      "reasons": [
+        "first_publication_missing"
+      ],
+      "detail": "first publication did not satisfy the conservative year parser"
+    },
+    {
+      "editionId": "061483-1281daf038e22c04",
+      "workId": "061483",
+      "archiveUrl": "https://www.aozora.gr.jp/cards/001569/files/61483_txt_78819.zip",
       "reasons": [
         "first_publication_missing"
       ],
