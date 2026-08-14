@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "referenceDate": "2026-08-02",
+  "referenceDate": "2026-08-14",
   "cutoffYear": 1930,
-  "upstreamCommit": "351ff56cbdc4efa4523e2c4e0564aac172c8ac95",
-  "metadataSha256": "8db07ebc29f7c4541e9864f2ec80dd785fe4f0b4aebcca6032aae55656267777",
+  "upstreamCommit": "9bac324dfa6af3a5a035542440934266f76fb45d",
+  "metadataSha256": "c35cb44a9e304519a43ed2dec83f8259bdff229c9d44ef23beb522b4d59d60f3",
   "summary": {
-    "csvRows": 19497,
-    "editionGroups": 17835,
+    "csvRows": 19500,
+    "editionGroups": 17838,
     "candidateEditions": 4417,
     "acceptedEditions": 4417,
-    "quarantinedEditions": 13418
+    "quarantinedEditions": 13421
   },
   "entries": [
     {
@@ -73989,15 +73989,13 @@
       "detail": "first publication did not satisfy the conservative year parser"
     },
     {
-      "editionId": "050612-4b61430b3b35b441",
+      "editionId": "050612-bc9c941ef4417d61",
       "workId": "050612",
-      "archiveUrl": "",
+      "archiveUrl": "https://www.aozora.gr.jp/cards/001248/files/50612_ruby_78823.zip",
       "reasons": [
-        "first_publication_missing",
-        "invalid_archive_url",
-        "unsupported_encoding"
+        "first_publication_missing"
       ],
-      "detail": "text ZIP URL is not an official Aozora HTTPS URL; text encoding is not ShiftJIS or UTF-8; first publication did not satisfy the conservative year parser"
+      "detail": "first publication did not satisfy the conservative year parser"
     },
     {
       "editionId": "050615-4cb5a1fa197d33c1",
@@ -107634,7 +107632,7 @@
       "workId": "057620",
       "archiveUrl": "https://www.aozora.gr.jp/cards/001869/files/57620_ruby_77800.zip",
       "reasons": [
-        "first_publication_unparsed"
+        "first_publication_after_cutoff"
       ],
       "detail": "first publication did not satisfy the conservative year parser"
     },
@@ -117087,6 +117085,15 @@
       "detail": "first publication did not satisfy the conservative year parser"
     },
     {
+      "editionId": "060117-7394c6bed93c8555",
+      "workId": "060117",
+      "archiveUrl": "https://www.aozora.gr.jp/cards/001869/files/60117_ruby_78808.zip",
+      "reasons": [
+        "first_publication_missing"
+      ],
+      "detail": "first publication did not satisfy the conservative year parser"
+    },
+    {
       "editionId": "060118-ef5560d96577ac24",
       "workId": "060118",
       "archiveUrl": "https://www.aozora.gr.jp/cards/001869/files/60118_ruby_78401.zip",
@@ -120372,6 +120379,15 @@
       "detail": "first publication did not satisfy the conservative year parser"
     },
     {
+      "editionId": "061483-1281daf038e22c04",
+      "workId": "061483",
+      "archiveUrl": "https://www.aozora.gr.jp/cards/001569/files/61483_txt_78819.zip",
+      "reasons": [
+        "first_publication_missing"
+      ],
+      "detail": "first publication did not satisfy the conservative year parser"
+    },
+    {
       "editionId": "061484-2eee0ac6c6f9a3c2",
       "workId": "061484",
       "archiveUrl": "https://www.aozora.gr.jp/cards/001569/files/61484_txt_78592.zip",
@@ -120647,6 +120663,15 @@
       "archiveUrl": "https://www.aozora.gr.jp/cards/000121/files/61540_txt_78283.zip",
       "reasons": [
         "first_publication_missing"
+      ],
+      "detail": "first publication did not satisfy the conservative year parser"
+    },
+    {
+      "editionId": "061545-2daeb86d50e47f8d",
+      "workId": "061545",
+      "archiveUrl": "https://www.aozora.gr.jp/cards/001763/files/61545_ruby_78825.zip",
+      "reasons": [
+        "first_publication_after_cutoff"
       ],
       "detail": "first publication did not satisfy the conservative year parser"
     },
