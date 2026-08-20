@@ -1,16 +1,16 @@
 # Generated provenance is changed only by a reviewed corpus update PR.
 [policy]
-reference_date = "2026-08-02"
+reference_date = "2026-08-20"
 cutoff_year = 1930
 expected_accepted_editions = 4417
 max_accepted_decrease = 25
 
 [upstream]
 repository = "https://github.com/aozorabunko/aozorabunko"
-commit = "351ff56cbdc4efa4523e2c4e0564aac172c8ac95"
+commit = "65a4b485354be95da25361ca35f69bc9161ae16e"
 metadata_path = "index_pages/list_person_all_extended_utf8.zip"
 metadata_url = "https://www.aozora.gr.jp/index_pages/list_person_all_extended_utf8.zip"
-metadata_sha256 = "8db07ebc29f7c4541e9864f2ec80dd785fe4f0b4aebcca6032aae55656267777"
+metadata_sha256 = "6123bc2eb7684a13fd9e272625059bd9199c9eb3c2bad036e8b5d5bbfe500283"
 
 [output]
 manifest = "corpus/manifest.json"
