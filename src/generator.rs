@@ -524,7 +524,7 @@ fn extract_metadata_csv(archive: &[u8]) -> Result<Vec<u8>> {
         .filter(|index| {
             zip.by_index(*index)
                 .ok()
-                .is_some_and(|file| file.name().ends_with(".csv") && !file.is_dir())
+                .is_some_and(|file| file.name_raw().ends_with(b".csv") && !file.is_dir())
         })
         .collect::<Vec<_>>();
     if indexes.len() != 1 {
@@ -1113,7 +1113,69 @@ pub fn sha256(bytes: impl AsRef<[u8]>) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::{make_edition_id, safe_relative_path, sha256, validate_official_url};
+    use std::io::{Cursor, Write};
+
+    use super::{
+        extract_metadata_csv, make_edition_id, safe_relative_path, sha256, validate_official_url,
+    };
+
+    fn metadata_archive(files: &[(&str, &[u8])]) -> Vec<u8> {
+        let mut writer = zip::ZipWriter::new(Cursor::new(Vec::new()));
+        for (name, contents) in files {
+            writer
+                .start_file(*name, zip::write::SimpleFileOptions::default())
+                .expect("start fixture entry");
+            writer.write_all(contents).expect("write fixture entry");
+        }
+        writer
+            .finish()
+            .expect("finish fixture archive")
+            .into_inner()
+    }
+
+    #[test]
+    fn extracts_single_csv_from_metadata_zip() {
+        let archive = metadata_archive(&[
+            ("README.txt", b"not metadata"),
+            ("metadata/作品.csv", b"id,title\n1,example\n"),
+        ]);
+        assert_eq!(
+            extract_metadata_csv(&archive).expect("extract metadata"),
+            b"id,title\n1,example\n"
+        );
+    }
+
+    #[test]
+    fn rejects_metadata_zip_without_csv() {
+        let archive = metadata_archive(&[("README.txt", b"not metadata")]);
+        assert_eq!(
+            extract_metadata_csv(&archive)
+                .expect_err("missing metadata")
+                .to_string(),
+            "metadata ZIP must contain exactly one CSV"
+        );
+    }
+
+    #[test]
+    fn rejects_ambiguous_metadata_zip() {
+        let archive = metadata_archive(&[("first.csv", b"first"), ("second.csv", b"second")]);
+        assert_eq!(
+            extract_metadata_csv(&archive)
+                .expect_err("ambiguous metadata")
+                .to_string(),
+            "metadata ZIP must contain exactly one CSV"
+        );
+    }
+
+    #[test]
+    fn rejects_malformed_metadata_zip() {
+        assert_eq!(
+            extract_metadata_csv(b"not a ZIP archive")
+                .expect_err("malformed archive")
+                .to_string(),
+            "open metadata ZIP"
+        );
+    }
 
     #[test]
     fn sha256_is_lowercase_and_stable() {
