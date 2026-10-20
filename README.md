@@ -1,48 +1,29 @@
 # Aozora rights-filtered corpus
 
-This repository pins Aozora Bunko editions that pass a conservative, mechanical rights policy.
+A pinned collection of 4,417 Aozora Bunko editions for reproducible text-processing tests.
+The snapshot uses reference date `2026-08-02` and publication cutoff `1930`.
 
-## Policy
+## Verify
 
-An edition is identified by its work ID and text ZIP URL. It is included in
-`corpus/manifest.json` only when:
+Install the Rust toolchain in `rust-toolchain.toml` and typos-cli `1.51.1`, then run:
 
-- the work and every contributor have the copyright flag `なし`;
-- the first-publication field is present, every year can be parsed, and every year is at or before
-  `reference year - 96`;
-- the work card and text ZIP use official Aozora Bunko HTTPS URLs;
-- the pinned ZIP can be extracted safely and converted from its declared encoding to UTF-8 without
-  loss; and
-- the CSV, ZIP, and UTF-8 text SHA-256 values can be reproduced.
+```sh
+cargo xtask check
+```
 
-Rejected editions are recorded with reasons in `corpus/quarantine.json`. Work-specific allowlists
-are not supported.
+This checks formatting, spelling, compilation, Clippy, tests, and the committed corpus.
+Snapshot updates are prepared locally with `cargo xtask refresh` and reviewed before adoption.
+Refresh requires the upstream mirror configured in [corpus.toml](corpus.toml).
 
-## Commands
+## Data and rights
 
-Install Rust 1.97.1 and typos-cli 1.48.0.
+The [manifest](corpus/manifest.json) includes only editions whose work and contributors have copyright flag `なし`, whose publication years satisfy the cutoff, and whose official source URLs, lossless decoding, and hashes can be verified.
+Rejected editions appear in [quarantine](corpus/quarantine.json).
+Work-specific allowlists are unsupported.
 
-| Command | Purpose |
-| --- | --- |
-| `cargo xtask doctor` | Check host tools and policy configuration. |
-| `cargo xtask spellcheck` | Check spelling with typos-cli. |
-| `cargo xtask check` | Run formatting, spelling, compilation, Clippy, tests, and corpus verification. |
-| `cargo xtask scan` | Scan the pinned metadata input. |
-| `cargo xtask snapshot --jobs 20` | Regenerate the corpus from pinned remote inputs. |
-| `cargo xtask snapshot --upstream-root ../aozorabunko --jobs 20` | Regenerate from a matching local mirror checkout. |
-| `cargo xtask verify` | Verify policy, ordering, identities, files, and hashes. |
-| `cargo xtask refresh --reference-date YYYY-MM-DD --jobs 20` | Prepare a new snapshot and update report. |
+Sources are the [official extended CSV](https://www.aozora.gr.jp/index_pages/list_person_all_extended_utf8.zip) and [Aozora Bunko site mirror](https://github.com/aozorabunko/aozorabunko).
+This unofficial filter targets display in Japan and hosting in the United States; it does not guarantee rights elsewhere.
+Review the [Aozora Bunko file-handling policy](https://www.aozora.gr.jp/guide/kijyunn.html) and each edition's rights evidence before using its text.
 
-## Data and license
-
-Inputs are pinned versions of the
-[Aozora Bunko extended CSV](https://www.aozora.gr.jp/index_pages/list_person_all_extended_utf8.zip)
-and [Aozora Bunko site mirror](https://github.com/aozorabunko/aozorabunko).
-
-This is not an official Aozora Bunko service. The policy targets display in Japan and hosting in
-the United States; it does not guarantee rights in every jurisdiction. Review the
-[Aozora Bunko file-handling policy](https://www.aozora.gr.jp/guide/kijyunn.html) and each entry's
-source and rights evidence before using a text.
-
-Generator and maintenance code is MIT-licensed. That license does not relicense Aozora Bunko texts
-or bibliographic data.
+Generator and maintenance code is [MIT-licensed](LICENSE).
+That license does not relicense source texts or bibliographic data.
