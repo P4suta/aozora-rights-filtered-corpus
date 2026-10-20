@@ -23,6 +23,7 @@ use crate::publication;
 
 const CORPUS_REPOSITORY: &str = "https://github.com/P4suta/aozora-rights-filtered-corpus";
 const UPSTREAM_REPOSITORY: &str = "https://github.com/aozorabunko/aozorabunko";
+const UPSTREAM_RAW_BASE: &str = "https://raw.githubusercontent.com/aozorabunko/aozorabunko";
 const MAX_ARCHIVE_BYTES: u64 = 128 * 1024 * 1024;
 const MAX_SOURCE_BYTES: u64 = 64 * 1024 * 1024;
 
@@ -90,7 +91,7 @@ impl UpstreamReader {
             }
             Input::Remote => {
                 let url = format!(
-                    "https://raw.githubusercontent.com/aozorabunko/aozorabunko/{}/{}",
+                    "{UPSTREAM_RAW_BASE}/{}/{}",
                     self.config.upstream.commit,
                     safe.to_string_lossy()
                 );
